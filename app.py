@@ -170,7 +170,8 @@ def predict():
             else:
                 print(f"DEBUG: Keeping {filename} for calibration.")
 
-if __name__ == '__main__':
-    # Initialize model if it exists
-    load_model()
-    app.run(host='0.0.0.0', port=5000, debug=True)
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
