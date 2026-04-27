@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepTruth - Deepfake Detection</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="particles" id="particles-js"></div>
+
+    <div class="main-container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h1>Deep<span>Truth</span></h1>
+            </div>
+            <p>Advanced Neural Network for Video Integrity Verification</p>
+        </header>
+
+        <div class="glass-panel">
+            <div class="upload-section" id="uploadArea">
+                <input type="file" id="videoInput" accept="image/*,video/mp4,video/x-m4v,video/webm,video/*" hidden>
+                <div class="upload-content">
+                    <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                    <h3>Drag & Drop your file here</h3>
+                    <p>or</p>
+                    <div class="button-group">
+                        <button class="btn-primary" id="browseBtn">Browse Files</button>
+                        <button class="btn-secondary" id="cameraBtn"><i class="fa-solid fa-camera"></i> Use
+                            Camera</button>
+                    </div>
+                    <p class="file-info" id="fileInfo">Supported formats: JPG, PNG, MP4, AVI, MOV</p>
+                </div>
+            </div>
+
+            <!-- Camera Section -->
+            <div class="camera-section hidden" id="cameraArea">
+                <div class="video-container">
+                    <video id="cameraPreview" autoplay muted playsinline></video>
+                    <div class="recording-indicator hidden" id="recordingIndicator">
+                        <div class="red-dot"></div> <span>Recording...</span> <span id="recordingTime">00:00</span>
+                    </div>
+                </div>
+                <div class="camera-controls">
+                    <button class="btn-primary start-record-btn" id="startRecordBtn"><i class="fa-solid fa-circle"></i>
+                        Start</button>
+                    <button class="btn-primary stop-record-btn hidden" id="stopRecordBtn"><i
+                            class="fa-solid fa-stop"></i> Stop & Analyze</button>
+                    <button class="btn-secondary" id="cancelCameraBtn">Cancel</button>
+                </div>
+            </div>
+
+            <div class="progress-section hidden" id="progressArea">
+                <div class="loader">
+                    <svg viewBox="25 25 50 50">
+                        <circle cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                    </svg>
+                </div>
+                <h3 id="progressText">Analyzing content...</h3>
+                <p>Please wait, our AI is processing this. This might take a few moments.</p>
+            </div>
+
+            <div class="result-section hidden" id="resultArea">
+                <div class="result-card" id="resultCard">
+                    <i class="fa-solid fa-circle-check result-icon" id="resultIcon"></i>
+                    <h2 class="result-title" id="resultTitle">REAL</h2>
+
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidenceFill"></div>
+                    </div>
+                    <p class="confidence-text">Confidence: <span id="confidenceValue">95%</span></p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <span class="stat-label">Total Frames</span>
+                            <span class="stat-value" id="totalFrames">50</span>
+                        </div>
+                        <div class="stat-box real-stat">
+                            <span class="stat-label">Real Frames</span>
+                            <span class="stat-value" id="realFrames">48</span>
+                        </div>
+                        <div class="stat-box fake-stat">
+                            <span class="stat-label">Fake Frames</span>
+                            <span class="stat-value" id="fakeFrames">2</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-secondary" id="resetBtn">Analyze Another File</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 DeepTruth AI. Built with TensorFlow & MobileNetV2.</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js', v=2) }}"></script>
+</body>
+
+</html>

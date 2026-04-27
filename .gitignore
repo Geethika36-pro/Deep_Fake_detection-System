@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual env
+venv/
+env/
+
+# AI / ML files
+*.h5
+*.pt
+*.pth
+*.ckpt
+
+# Dataset
+dataset/
+data/
+*.mp4
+*.avi
+*.zip
+
+# OS files
+.DS_Store
