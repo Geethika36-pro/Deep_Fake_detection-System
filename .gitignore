@@ -7,7 +7,6 @@ venv/
 env/
 
 # AI / ML files
-*.h5
 *.pt
 *.pth
 *.ckpt
