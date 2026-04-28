@@ -23,6 +23,9 @@ model = None
 def load_model():
     global model
     if model is None:
+        print("MODEL PATH:", MODEL_PATH)
+        print("FILE EXISTS:", os.path.exists(MODEL_PATH))
+
         if os.path.exists(MODEL_PATH):
             print("Loading TensorFlow model...")
             model = tf.keras.models.load_model(MODEL_PATH, compile=False)
