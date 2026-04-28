@@ -16,18 +16,19 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 # Load Face Cascade for cropping
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 # Use CLAHE for better contrast normalization
-clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
-MODEL_PATH = "deepfake_model.h5"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "deepfake_model.h5")
 model = None
 
 def load_model():
     global model
-    if model is None and os.path.exists(MODEL_PATH):
-        print("Loading TensorFlow model...")
-        model = tf.keras.models.load_model(MODEL_PATH)
-        print("Model loaded successfully.")
-        # Ensure we check classes ordering if possible from folder structure
-        # Standard alphabetic: fake/ -> 0, real/ -> 1
+    if model is None:
+        if os.path.exists(MODEL_PATH):
+            print("Loading TensorFlow model...")
+            model = tf.keras.models.load_model(MODEL_PATH)
+            print("Model loaded successfully.")
+        else:
+            print("❌ Model file NOT FOUND at:", MODEL_PATH)
     return model
 
 @app.route('/')
