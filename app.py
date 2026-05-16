@@ -17,8 +17,7 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 # Use CLAHE for better contrast normalization
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(BASE_DIR, "model.keras")
-model = None
+MODEL_PATH = os.path.join(BASE_DIR, "render_model.keras")
 
 def load_model():
     global model
